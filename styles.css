@@ -1,0 +1,150 @@
+
+@font-face {
+    font-family: "Custom-font";
+    src: url('shanghai.ttf');
+}
+
+body {
+    background-color: rgb(246, 234, 211);
+    margin: 0;
+    padding: 0;
+    font-family: "Custom-font", sans-serif;
+}
+
+.section {
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    padding: 20px; 
+}
+
+.section .pictures {
+    position: absolute;
+    width: 40vw; 
+    height: 50vh; 
+    max-width: 200px;
+    max-height: 250px;
+    top: 10px;
+    left: 43%;
+    transform: translateX(-50%);
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    animation: autoRun 20s linear infinite;
+    z-index: 2;
+}
+
+@keyframes autoRun {
+    from {
+        transform: perspective(1400px) rotateX(-18deg) rotateY(0deg);
+    }
+    to {
+        transform: perspective(1400px) rotateX(-18deg) rotateY(360deg);
+    }
+}
+
+.section .pictures .item {
+    position: absolute;
+    inset: 0;
+    transform: 
+        rotateY(calc( (var(--position) - 1) * (360 / var(--quantity)) * 1deg))
+        translateZ(36vw); 
+}
+
+.section .pictures .item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.section .content {
+    position: absolute;
+    bottom: 0;
+    left: 47%;
+    transform: translateX(-50%);
+    width: 85vw; 
+    max-width: 1400px;
+    padding-bottom: 5vh; 
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1;
+    text-align: center; 
+}
+
+.section .content h1 {
+    font-size: 10vw; 
+    line-height: 1em;
+    position: relative;
+    margin: 0; 
+}
+
+.section .content h1::after {
+    position: absolute;
+    inset: 0;
+    content: attr(data-content);
+    z-index: 2;
+    color: transparent;
+}
+
+.section .content .author {
+    max-width: 200px;
+    width: 100%;
+    text-align: center; 
+    margin-top: 10px;
+}
+
+.section .content h2 {
+    font-size: 3vw; 
+    margin: 10px 0; 
+}
+
+.button-github, .button-linkedin {
+    width: 40px;  
+    height: 40px; 
+    cursor: pointer; 
+    display: inline-block; 
+    margin: 10px; 
+}
+
+.button-github img, .button-linkedin img {
+    width: 100%; 
+    height: 100%; 
+    object-fit: contain; 
+}
+
+
+@media (max-width: 768px) {
+    .section .content {
+        flex-direction: column; 
+        padding-bottom: 50px;
+    }
+
+    .section .pictures {
+        width: 60vw;
+        height: 35vh;
+        max-width: none;
+        max-height: none;
+    }
+
+    .section .content h1 {
+        font-size: 6vw; 
+    }
+
+    .section .content h2 {
+        font-size: 2vw; 
+    }
+
+    .section .content .author {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .button-github, .button-linkedin {
+        width: 35px;
+        height: 35px;
+    }
+}
+
